@@ -33,16 +33,22 @@ sudo apt-get update -y
 sudo apt-get install -y docker.io kubelet kubeadm kubectl kubernetes-cni
 DONE
 clear
+touch adm
+touch min.sh
+echo '#!/bin/bash' >> min.sh
+kubeadm init >> adm
+tail adm -n 1 >> min.sh
 echo "Enter the number of minions nodes"
 read minionnumb
 for ((i=1; i<=$minionnumb; i++))
 do
 echo "Please give the $i minion ip:"
 read minionip
-ssh root@$minionip ./kube/minion.sh
+ssh root@$minionip 'bash -s' < /kube/minion.sh
+ssh root@$minionip 'bash -s' < /kube/min.sh
 echo "Prerequisites isntalled  $i master."
 done
 echo "All minions have been configured."
+echo "Kubernetes Setup is done."
+echo "Play around with Kubernetes"
 sleep 2
-clear
-kubeadm init
