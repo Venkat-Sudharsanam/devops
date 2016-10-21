@@ -42,7 +42,7 @@ for ((i=1; i<=$minionnumb; i++))
 do
 echo "Please give the $i minion ip:"
 read minionip
-ssh root@$minionip /script/$name.sh
+ssh root@$minionip /kubernetes/$minion.sh
 echo "Prerequisites isntalled  $i master."
 done
 echo "All minions have been configured."
