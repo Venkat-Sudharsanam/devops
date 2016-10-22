@@ -49,6 +49,12 @@ ssh root@$minionip 'bash -s' < min.sh
 echo "Prerequisites isntalled  $i master."
 done
 echo "All minions have been configured."
+kubectl apply -f https://git.io/weave-kube
+kubectl get pods --all-namespaces
+echo
+echo
+echo
+echo "When all the started running then you are good to go"
 echo "Kubernetes Setup is done."
 echo "Play around with Kubernetes"
 sleep 2
