@@ -44,8 +44,8 @@ for ((i=1; i<=$minionnumb; i++))
 do
 echo "Please give the $i minion ip:"
 read minionip
-ssh root@$minionip 'bash -s' < /kube/minion.sh
-ssh root@$minionip 'bash -s' < /kube/min.sh
+ssh root@$minionip 'bash -s' < minion.sh
+ssh root@$minionip 'bash -s' < min.sh
 echo "Prerequisites isntalled  $i master."
 done
 echo "All minions have been configured."
