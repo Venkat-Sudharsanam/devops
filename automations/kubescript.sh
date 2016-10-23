@@ -54,7 +54,8 @@ kubectl apply -f https://git.io/weave-kube
 for ((i=1; i<100; i++))
 do
 kubectl get pods --all-namespaces
-read -p "Check whether all are in running fully(y/n)"a
+echo "Check whether all are in running fully(y/n)" 
+read a
 if ["$a==y"]
 then
 kubectl create -f https://rawgit.com/kubernetes/dashboard/master/src/deploy/kubernetes-dashboard.yaml
