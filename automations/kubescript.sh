@@ -1,4 +1,5 @@
 #!/bin/bash
+clear
 echo "This is Kubernetes 1.4 setup of master and minion."
 echo
 echo
@@ -50,7 +51,21 @@ echo "Prerequisites isntalled  $i master."
 done
 echo "All minions have been configured."
 kubectl apply -f https://git.io/weave-kube
+for ((i=1; i<100; i++))
+do
 kubectl get pods --all-namespaces
+read -p "Check whether all are in running fully(y/n)"a
+if ["$a==y"]
+then
+kubectl create -f https://rawgit.com/kubernetes/dashboard/master/src/deploy/kubernetes-dashboard.yaml
+kubectl describe svc kubernetes-dashboard -n kube-system
+i=100
+else ["$a==n"]
+echo "Please wait for 100 sec to do the check whether it went to running state."
+sleep 100
+fi
+done
+clear
 echo
 echo
 echo
